@@ -1,5 +1,5 @@
 # Project information
-site_name: Reinforcement Learning: The Complete Series
+site_name: "Reinforcement Learning: The Complete Series"
 site_url: https://<YOUR_GITHUB_USERNAME>.github.io/rl-book-ecosystem/ # TODO: Replace with your repo URL
 site_description: An open-source textbook series on Reinforcement Learning.
 repo_url: https://github.com/<YOUR_GITHUB_USERNAME>/rl-book-ecosystem # TODO: Replace with your repo URL
