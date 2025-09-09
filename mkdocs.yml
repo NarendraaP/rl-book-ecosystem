@@ -1,0 +1,49 @@
+# Project information
+site_name: Reinforcement Learning: The Complete Series
+site_url: https://<YOUR_GITHUB_USERNAME>.github.io/rl-book-ecosystem/ # TODO: Replace with your repo URL
+site_description: An open-source textbook series on Reinforcement Learning.
+repo_url: https://github.com/<YOUR_GITHUB_USERNAME>/rl-book-ecosystem # TODO: Replace with your repo URL
+repo_name: rl-book-ecosystem
+
+# Theme configuration (Spec Section 4.1)
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - search.highlight
+  palette:
+    # Palette toggle for light mode
+    - scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+# Extensions for extra features like math rendering
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+
+extra_javascript:
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+# Navigation structure (based on Spec Section 2.2)
+# We point MkDocs directly to the files in their locations.
+nav:
+  - Home: index.md
+  - Volume I: Foundations:
+    - Chapter 1: Introduction: volumes/volume-1/chapters/01-introduction.md
+
+# Tell MkDocs to look for files in the root directory, not just 'docs/'
+docs_dir: .
+
+# Copyright and extra info
+copyright: Copyright &copy; 2025 RL Book Project Contributors. Licensed under CC-BY-4.0.

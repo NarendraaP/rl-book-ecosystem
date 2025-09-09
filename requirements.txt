@@ -1,0 +1,5 @@
+# MkDocs for site generation
+mkdocs==1.6.0
+
+# Material Theme for MkDocs
+mkdocs-material==9.5.17
