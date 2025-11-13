@@ -1,0 +1,5 @@
+# MkDocs for site generation
+mkdocs
+
+# Material Theme for MkDocs
+mkdocs-material
