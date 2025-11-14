@@ -5,7 +5,6 @@ on:
     branches:
       - main
 
-# Grant write permissions to the GITHUB_TOKEN
 permissions:
   contents: write
 
@@ -26,7 +25,7 @@ jobs:
 
       - name: Build the site
         run: |
-          mkdocs build -f docs/mkdocs.yml -d site
+          python -m mkdocs build -f mkdocs.yml -d site
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
