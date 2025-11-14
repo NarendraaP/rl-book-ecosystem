@@ -5,6 +5,7 @@ on:
     branches:
       - main
 
+# Grant write permissions to the GITHUB_TOKEN
 permissions:
   contents: write
 
