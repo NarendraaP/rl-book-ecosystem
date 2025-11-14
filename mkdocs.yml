@@ -1,0 +1,6 @@
+site_name: RL Book Ecosystem
+docs_dir: .
+nav:
+  - Home: index.md
+theme:
+  name: material
