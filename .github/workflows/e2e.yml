@@ -18,13 +18,12 @@ jobs:
         run: |
           python3 scripts/queue/queue_daemon.py &
           sleep 2
-
           python3 - <<'PY'
-import json, pathlib, time
-p = pathlib.Path('data/jobs/inbox')
-p.mkdir(parents=True, exist_ok=True)
-(p/'testjob.json').write_text(json.dumps({'job_id':'test-1'}))
-time.sleep(3)
-print('Check outbox:')
-print(list(pathlib.Path('data/jobs/outbox').glob('*.json')))
-PY
+          import json, pathlib, time
+          p = pathlib.Path('data/jobs/inbox')
+          p.mkdir(parents=True, exist_ok=True)
+          (p/'testjob.json').write_text(json.dumps({'job_id':'test-1'}))
+          time.sleep(3)
+          print('Check outbox:')
+          print(list(pathlib.Path('data/jobs/outbox').glob('*.json')))
+          PY
