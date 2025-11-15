@@ -2,8 +2,7 @@ name: Deploy MkDocs Site
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
 
 permissions:
   contents: write
@@ -11,40 +10,44 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "deploy-pages"
+  group: "pages"
   cancel-in-progress: true
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
+    outputs:
+      site-path: $_site
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Setup Python
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: 3.11
+          python-version: '3.11'
 
-      - name: Install MkDocs
+      - name: Install dependencies
         run: |
-          pip install mkdocs-material
+          python -m pip install --upgrade pip
+          pip install mkdocs mkdocs-material
 
       - name: Build site
         run: |
-          mkdocs build -f docs/mkdocs.yml -d _site
+          # Build with docs/mkdocs.yml and emit into _site
+          python -m mkdocs build -f docs/mkdocs.yml -d _site
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+      - name: Upload pages artifact
+        uses: actions/upload-pages-artifact@v1
         with:
           path: _site
 
   deploy:
-    needs: build-and-deploy
+    needs: build
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v1
