@@ -11,40 +11,41 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: "pages-deploy"
   cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Setup Python
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: '3.11'
 
-      - name: Install dependencies
+      - name: Install build deps
         run: |
-          pip install --user mkdocs mkdocs-material
+          pip install mkdocs mkdocs-material
 
       - name: Build site
         run: |
-          # build site from docs/ with config docs/mkdocs.yml
-          python -m mkdocs build -f docs/mkdocs.yml -d site
+          mkdocs build -f docs/mkdocs.yml -d _site
 
-      - name: Upload site artifact for Pages
+      - name: Upload pages artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: site
+          path: _site
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
     environment:
       name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v2
