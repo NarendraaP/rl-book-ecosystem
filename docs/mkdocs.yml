@@ -1,38 +1,9 @@
 site_name: RL Book Ecosystem
-site_description: Documentation for RL Book Ecosystem
-site_author: Narendra
-
+site_description: Documentation for RL book ecosystem
 nav:
   - Home: index.md
-  - Tutorials:
-      - Introduction: tutorials/introduction.md
-      - Getting Started: tutorials/getting-started.md
-  - Examples:
-      - Example 1: examples/example1.md
-      - Example 2: examples/example2.md
 
 theme:
   name: material
-  features:
-    - navigation.expand
-    - navigation.top
-    - toc.integrate
-    - content.code.copy
-    - content.tooltips
 
-markdown_extensions:
-  - admonition
-  - codehilite
-  - footnotes
-  - meta
-  - toc:
-      permalink: true
-
-plugins:
-  - search
-
-# ❗️ Removed the invalid line:
-# site_dir: docs/_site
-#
-# MkDocs will now use the correct build directory set by GitHub Actions:
-# `mkdocs build -f docs/mkdocs.yml -d _site`
+# Add any other needed settings here (but avoid site_dir/docs_dir entries)
