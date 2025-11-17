@@ -5,7 +5,7 @@ on:
     branches: [ "main" ]
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
@@ -31,12 +31,11 @@ jobs:
           pip install mkdocs mkdocs-material
 
       - name: Build MkDocs site
-        # build into _site (a local directory) which we'll upload
         run: |
           python -m mkdocs build -f docs/mkdocs.yml -d _site
 
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v1
         with:
           path: _site
 
@@ -45,8 +44,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v1
