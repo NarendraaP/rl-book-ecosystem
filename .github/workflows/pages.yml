@@ -16,8 +16,6 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    outputs:
-      site-path: $_site
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -25,7 +23,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
       - name: Install dependencies
         run: |
@@ -33,12 +31,12 @@ jobs:
           pip install mkdocs mkdocs-material
 
       - name: Build site
+        # build into _site
         run: |
-          # Build with docs/mkdocs.yml and emit into _site
           python -m mkdocs build -f docs/mkdocs.yml -d _site
 
       - name: Upload pages artifact
-        uses: actions/upload-pages-artifact
+        uses: actions/upload-pages-artifact@v2
         with:
           path: _site
 
@@ -50,4 +48,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages
+        uses: actions/deploy-pages@v2
